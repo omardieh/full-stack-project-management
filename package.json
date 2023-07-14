@@ -1,0 +1,13 @@
+{
+  "name": "full-stack-project-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "backend": "cd backend-project-management && npm run dev",
+    "frontend": "cd frontend-project-management && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
