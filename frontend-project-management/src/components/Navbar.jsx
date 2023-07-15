@@ -4,32 +4,37 @@ import { useContext } from "react";
 
 function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  let navElements = [
+    { title: "Home", path: "/" },
+    { title: "Projects", path: "/projects" },
+    { title: "Signup", path: "/signup" },
+    { title: "Login", path: "/login" },
+  ];
+
+  if (isLoggedIn) {
+    navElements = navElements.filter((e) => e.path !== "/signup");
+  }
+
   return (
     <nav>
-      <Link to="/">
-        <button>Home</button>
-      </Link>
-
-      {isLoggedIn && (
-        <>
-          <Link to="/projects">
-            <button>Projects</button>
+      {navElements.map((e, i) => {
+        return (
+          <Link key={i + e.title} to={e.path}>
+            <button
+              onClick={
+                e.path === "/login" && isLoggedIn ? logOutUser : undefined
+              }
+            >
+              {e.path === "/login"
+                ? isLoggedIn
+                  ? "Logout"
+                  : e.title
+                : e.title}
+            </button>
           </Link>
-          <button onClick={logOutUser}>Logout</button>
-          <span>{user && user.name}</span>
-        </>
-      )}
-
-      {!isLoggedIn && (
-        <>
-          <Link to="/signup">
-            <button>Sign Up</button>
-          </Link>
-          <Link to="/login">
-            <button>Login</button>
-          </Link>
-        </>
-      )}
+        );
+      })}
+      {isLoggedIn && <span> Welcome {user.name} </span>}
     </nav>
   );
 }

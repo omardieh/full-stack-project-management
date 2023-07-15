@@ -49,14 +49,7 @@ function App() {
             </IsAnon>
           }
         />
-        <Route
-          path="/login"
-          element={
-            <IsAnon>
-              <LoginPage />
-            </IsAnon>
-          }
-        />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </div>
   );

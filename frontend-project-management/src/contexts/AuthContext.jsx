@@ -1,6 +1,5 @@
 import { useState, useEffect, createContext } from "react";
-import axios from "axios";
-const API_URL = "http://localhost:5005";
+import authService from "../services/AuthService";
 
 const AuthContext = createContext();
 
@@ -20,10 +19,8 @@ function AuthProvider(props) {
   const authenticateUser = () => {
     const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
-      axios
-        .get(`${API_URL}/auth/verify`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
+      authService
+        .verify()
         .then((response) => {
           const user = response.data;
           setIsLoggedIn(true);
@@ -42,12 +39,8 @@ function AuthProvider(props) {
     }
   };
 
-  const removeToken = () => {
-    localStorage.removeItem("authToken");
-  };
-
   const logOutUser = () => {
-    removeToken();
+    localStorage.removeItem("authToken");
     authenticateUser();
   };
 
