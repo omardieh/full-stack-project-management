@@ -6,11 +6,9 @@ const app = express();
 
 require("./config")(app);
 
-const { apiRouter, projectRouter, taskRouter } = require("./routes/api");
+require("./routes/auth")(app);
 
-app.use("/api", apiRouter);
-app.use("/api/projects", projectRouter);
-app.use("/api/tasks", taskRouter);
+require("./routes/api")(app);
 
 require("./error-handling")(app);
 

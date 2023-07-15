@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "backend": "cd backend-project-management && npm run dev",
-    "backend:i": "npm --prefix ./backend-project-management install",
-    "frontend": "cd frontend-project-management && npm run dev"
+    "backend:dev": "npm --prefix ./backend-project-management run dev",
+    "backend:install": "npm --prefix ./backend-project-management install",
+    "backend:uninstall": "npm --prefix ./backend-project-management uninstall",
+    "backend:delete": "cd backend-project-management && rm -rf && cd ..",
+    "frontend:dev": "npm --prefix frontend-project-management run dev",
+    "frontend:install": "npm --prefix ./frontend-project-management install",
+    "frontend:uninstall": "npm --prefix ./frontend-project-management uninstall",
+    "frontend:delete": "cd frontend-project-management && rm -rf && cd .."
   },
   "keywords": [],
   "author": "",
