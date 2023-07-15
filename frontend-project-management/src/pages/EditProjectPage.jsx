@@ -11,8 +11,11 @@ function EditProjectPage(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const requestHeaders = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+    };
     axios
-      .get(`${API_URL}/api/projects/${projectId}`)
+      .get(`${API_URL}/api/projects/${projectId}`, requestHeaders)
       .then((response) => {
         const oneProject = response.data;
         setTitle(oneProject.title);

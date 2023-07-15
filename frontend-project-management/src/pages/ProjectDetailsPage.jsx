@@ -9,9 +9,12 @@ const API_URL = "http://localhost:5005";
 function ProjectDetailsPage(props) {
   const [project, setProject] = useState(null);
   const { projectId } = useParams();
+  const requestHeaders = {
+    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+  };
   const getProject = () => {
     axios
-      .get(`${API_URL}/api/projects/${projectId}`)
+      .get(`${API_URL}/api/projects/${projectId}`, requestHeaders)
       .then((response) => {
         const oneProject = response.data;
         setProject(oneProject);

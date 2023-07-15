@@ -4,7 +4,6 @@ import { useContext } from "react";
 
 function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  console.log(user);
   return (
     <nav>
       <Link to="/">

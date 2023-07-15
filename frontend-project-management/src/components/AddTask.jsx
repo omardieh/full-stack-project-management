@@ -11,9 +11,11 @@ function AddTask(props) {
     e.preventDefault();
     const { projectId } = props;
     const requestBody = { title, description, projectId };
-
+    const requestHeaders = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+    };
     axios
-      .post(`${API_URL}/api/tasks`, requestBody)
+      .post(`${API_URL}/api/tasks`, requestBody, requestHeaders)
       .then((response) => {
         setTitle("");
         setDescription("");

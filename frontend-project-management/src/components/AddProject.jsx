@@ -6,12 +6,17 @@ const API_URL = "http://localhost:5005";
 function AddProject(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const storedToken = localStorage.getItem("authToken");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const requestBody = { title, description };
+    const requestHeaders = {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    };
+
     axios
-      .post(`${API_URL}/api/projects`, requestBody)
+      .post(`${API_URL}/api/projects`, requestBody, requestHeaders)
       .then((response) => {
         setTitle("");
         setDescription("");

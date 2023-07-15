@@ -18,13 +18,15 @@ function LoginPage(props) {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const requestBody = { email, password };
+    const requestHeaders = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+    };
     axios
-      .post(`${API_URL}/auth/login`, requestBody)
+      .post(`${API_URL}/auth/login`, requestBody, requestHeaders)
       .then((response) => {
-        console.log("JWT token", response.data.authToken);
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/");
+        navigate("/projects");
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
