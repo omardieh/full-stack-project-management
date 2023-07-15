@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "backend": "cd backend-project-management && npm run dev",
+    "backend:i": "npm --prefix ./backend-project-management install",
     "frontend": "cd frontend-project-management && npm run dev"
   },
   "keywords": [],
